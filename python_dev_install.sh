@@ -15,6 +15,10 @@ sudo apt install -y make build-essential libssl-dev zlib1g-dev \
     libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev \
     libffi-dev liblzma-dev git unzip
 
+echo -e "${GREEN}Installing python3-venv...${NC}"
+sudo apt install -y python3-venv
+
+
 # Install pyenv
 if [ ! -d "$HOME/.pyenv" ]; then
     echo -e "${GREEN}Installing pyenv...${NC}"
@@ -52,17 +56,5 @@ export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init --path)"
 eval "$(pyenv init -)"
-
-# Ensure ensurepip is available (should be in base Python install)
-echo -e "${GREEN}Installing pipx and virtualenv...${NC}"
-python -m ensurepip --upgrade
-
-# Install pipx using ensurepip
-python -m pip install --user pipx
-python -m pipx ensurepath
-
-# Install virtualenv (optionally with pip or pipx)
-python -m pip install --user virtualenv
-
 
 source ~/.bashrc
